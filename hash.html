@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Password Hashing Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Password & Hashing Tool</h1>
+
+        <label for="hashAlgo">Select Hash Algorithm:</label>
+        <select id="hashAlgo">
+            <option value="SHA-256">SHA-256</option>
+            <option value="SHA-512">SHA-512</option>
+            <option value="SHA-1">SHA-1</option>
+            <option value="MD5">MD5 (not secure)</option>
+            <option value="SHA-3">SHA-3</option>
+            <option value="BLAKE2">BLAKE2</option>
+            <option value="Argon2">Argon2</option>
+        </select>
+
+        <input type="text" id="inputString" placeholder="Enter password" oninput="realTimeHash()" />
+        <input type="text" id="saltInput" placeholder="Optional: Add salt" />
+        
+        <label for="iterations">Iterations:</label>
+        <input type="number" id="iterations" value="1" min="1" />
+
+        <div class="password-strength">
+            <label>Password Strength:</label>
+            <div id="strengthMeter" class="meter"></div>
+            <p id="strengthMessage"></p>
+        </div>
+
+        <button onclick="generateHash()">Generate Hash</button>
+        
+        <p><strong>Generated Hash:</strong></p>
+        <textarea id="outputHash" readonly></textarea>
+        
+        <button id="copyButton" onclick="copyToClipboard()">Copy to Clipboard</button>
+        <button id="downloadButton" onclick="downloadHash()">Download Hash</button>
+
+        <div class="theme-switch">
+            <label>Dark Mode:</label>
+            <input type="checkbox" id="themeToggle" onchange="toggleTheme()" />
+        </div>
+
+        <button onclick="showHelp()">Help</button>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeHelp()">&times;</span>
+            <h2>How to Use the Tool</h2>
+            <p>Choose a hashing algorithm, add optional salt, and specify the number of iterations. Use secure hashing algorithms like SHA-256 or Argon2 for password protection.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Help Modal -->
+<div id="helpModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeHelp()">&times;</span>
+        <h2>How to Use the Tool</h2>
+        <ol>
+            <li>
+                <strong>Select Hash Algorithm:</strong>
+                Choose a hashing algorithm from the dropdown menu. Options include SHA-256, SHA-512, SHA-1, MD5, SHA-3, BLAKE2, and Argon2. Use secure algorithms like SHA-256 or Argon2 for better security.
+            </li>
+            <li>
+                <strong>Enter Password:</strong>
+                Type the password you want to hash into the "Enter password" field. If left empty, a default string will be used.
+            </li>
+            <li>
+                <strong>Add Optional Salt:</strong>
+                You can add a salt to your password for additional security. Type it into the "Optional: Add salt" field.
+            </li>
+            <li>
+                <strong>Set Iterations:</strong>
+                Specify the number of iterations for the hash. More iterations increase security but take more time to compute.
+            </li>
+            <li>
+                <strong>Check Password Strength:</strong>
+                As you type your password, the tool will indicate its strength. It checks for length, uppercase and lowercase letters, numbers, and special characters.
+            </li>
+            <li>
+                <strong>Generate Hash:</strong>
+                Click the "Generate Hash" button to create the hash of your password.
+            </li>
+            <li>
+                <strong>Copy Hash:</strong>
+                After generating the hash, you can click the "Copy to Clipboard" button to copy the hash for use elsewhere.
+            </li>
+            <li>
+                <strong>Download Hash:</strong>
+                Click the "Download Hash" button to save the generated hash as a text file.
+            </li>
+            <li>
+                <strong>Toggle Dark Mode:</strong>
+                Use the dark mode toggle to switch between light and dark themes for better visibility based on your preference.
+            </li>
+        </ol>
+    </div>
+
+</div>
